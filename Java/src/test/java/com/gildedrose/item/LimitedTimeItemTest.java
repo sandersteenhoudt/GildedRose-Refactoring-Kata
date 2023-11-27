@@ -30,11 +30,13 @@ class LimitedTimeItemTest {
 
     @Test
     void shouldCapQualityAtMaximum() {
-        var itemWithQualityChangeExceedingMaximum = new GildedRoseItem(ItemMother.dexterityVest(), GildedRoseItem.MAXIMUM_QUALITY + 1);
-        updateItemQualityAndCheckResult(itemWithQualityChangeExceedingMaximum, GildedRoseItem.MAXIMUM_QUALITY);
+        var itemWithQualityChangeExceedingMaximum = new LimitedTimeItem(ItemMother.backstagePass());
+        itemWithQualityChangeExceedingMaximum.quality = AppreciatingItem.MAXIMUM_QUALITY;
+
+        updateItemQualityAndCompareWithExpectedQuality(itemWithQualityChangeExceedingMaximum, AppreciatingItem.MAXIMUM_QUALITY);
     }
 
-    void updateItemQualityAndCheckResult(GildedRoseItem item, int expectedQuality) {
+    void updateItemQualityAndCompareWithExpectedQuality(GildedRoseItem item, int expectedQuality) {
         item.updateQuality();
         assertThat(item)
             .hasQuality(expectedQuality);
@@ -78,6 +80,6 @@ class LimitedTimeItemTest {
 
         return DynamicTest.dynamicTest(
             String.format("Item with sell in <%d> should have quality updated by <%d>", sellIn, expectedQualityChange),
-            () -> updateItemQualityAndCheckResult(limitedTimeItem, ItemMother.BACKSTAGE_PASS_QUALITY + expectedQualityChange));
+            () -> updateItemQualityAndCompareWithExpectedQuality(limitedTimeItem, ItemMother.BACKSTAGE_PASS_QUALITY + expectedQualityChange));
     }
 }

@@ -13,4 +13,11 @@ class LegendaryItemTest {
         assertThat(item).hasQuality(80);
     }
 
+    @Test
+    void shouldNotChangeSellIn() {
+        var item = new LegendaryItem(ItemMother.sulfuras());
+        item.decreaseSellIn();
+        assertThat(item).hasDaysLeftToSell(ItemMother.SULFURAS_SELL_IN_DAYS);
+    }
+
 }

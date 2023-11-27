@@ -2,12 +2,16 @@ package com.gildedrose.item;
 
 import com.gildedrose.Item;
 import org.apache.commons.lang3.Range;
+import org.slf4j.Logger;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
-public class LimitedTimeItem extends GildedRoseItem {
+import static org.slf4j.LoggerFactory.getLogger;
+
+public class LimitedTimeItem extends AppreciatingItem {
+    private static final Logger log = getLogger(ItemConverter.class);
     public static final int DEFAULT_QUALITY_MODIFIER = 1;
     private static final List<TimeBasedQualityModifier> DEFAULT_MODIFIERS = List.of(
         new TimeBasedQualityModifier(Range.between(1, 5), 3),
@@ -40,8 +44,8 @@ public class LimitedTimeItem extends GildedRoseItem {
     @Override
     public void updateQuality() {
         //Allowed to sell on day of concert?
-        if (sellIn < 0) {
-            //TODO logging
+        if (isExpired()) {
+            log.debug("Item {} is expired, quality is 0", name);
             quality = 0;
         } else {
             super.updateQuality();

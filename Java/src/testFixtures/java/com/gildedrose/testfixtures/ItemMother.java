@@ -11,7 +11,7 @@ public class ItemMother {
     public static final int AGED_BRIE_SELL_IN_DAYS = 2;
     public static final int AGED_BRIE_QUALITY = 0;
     public static final String SULFURAS_NAME = "Sulfuras, Hand of Ragnaros";
-    public static final int SULFURAS_SELL_IN_DAYS = -1;
+    public static final int SULFURAS_SELL_IN_DAYS = 0;
     public static final int SULFURAS_QUALITY = 80;
     public static final String BACKSTAGE_PASS_NAME = "Backstage passes to a TAFKAL80ETC concert";
     public static final int BACKSTAGE_PASS_SELL_IN_DAYS = 15;

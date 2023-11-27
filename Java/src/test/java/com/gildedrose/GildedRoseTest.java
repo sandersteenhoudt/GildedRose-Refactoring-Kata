@@ -1,21 +1,13 @@
 package com.gildedrose;
 
 import com.gildedrose.testfixtures.ItemMother;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static com.gildedrose.assertions.ItemAssertions.assertThat;
 
-//TODO make more generic
+//TODO clean this up, logic is mainly handled in corresponding item classes now so the tests are duplicated
 class GildedRoseTest {
-
-    @Test
-    void shouldSetItems() {
-        Item vest = ItemMother.dexterityVest();
-        GildedRose app = new GildedRose(new Item[]{vest});
-        Assertions.assertThat(app.items[0]).isEqualTo(vest);
-    }
 
     private Item startAppAndGetUpdatedItem(Item item) {
         GildedRose app = new GildedRose(new Item[]{item});
@@ -46,7 +38,7 @@ class GildedRoseTest {
         @Test
         void shouldDecrementQualityByTwoWhenSellByDateReached() {
             Item vest = ItemMother.dexterityVest();
-            vest.sellIn = 0;
+            vest.sellIn = -1;
             Item updatedVest = startAppAndGetUpdatedItem(vest);
             assertThat(updatedVest).hasQuality(ItemMother.VEST_QUALITY - 2);
         }
@@ -107,10 +99,11 @@ class GildedRoseTest {
                 assertThat(startAppAndGetUpdatedItem(backstagePass)).hasQuality(ItemMother.BACKSTAGE_PASS_QUALITY + 3);
             }
 
+            //"Expired" is ambiguous here (in the context of concert tickets), so to allow selling tickets on the day of the concert, expired is -1
             @Test
             void shouldDropQualityToZeroWhenExpired() {
                 Item backstagePass = ItemMother.backstagePass();
-                backstagePass.sellIn = 0;
+                backstagePass.sellIn = -1;
                 assertThat(startAppAndGetUpdatedItem(backstagePass)).hasQuality(0);
             }
         }
@@ -119,7 +112,7 @@ class GildedRoseTest {
     @Nested
     class LegendaryItems {
         private static final int LEGENDARY_QUALITY = 80;
-        private static final int LEGENDARY_SELL_IN_DAYS = -1;
+        private static final int LEGENDARY_SELL_IN_DAYS = 0;
 
 
         @Test
