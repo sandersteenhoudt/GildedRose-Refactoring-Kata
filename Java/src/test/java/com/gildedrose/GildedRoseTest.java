@@ -59,6 +59,9 @@ class GildedRoseTest {
             assertThat(updatedVest).hasQuality(ItemMother.VEST_QUALITY - 2);
         }
 
+
+        //TODO conjured items
+
     }
 
     @Nested
