@@ -18,6 +18,15 @@ public abstract class GildedRoseItem extends Item {
         sellIn -= 1;
     }
 
+    @Override
+    public String toString() {
+        return "GildedRoseItem{" +
+            "name='" + name + '\'' +
+            ", sellIn=" + sellIn +
+            ", quality=" + quality +
+            '}';
+    }
+
     protected boolean isExpired() {
         return sellIn < 0;
     }

@@ -42,6 +42,12 @@ class LimitedTimeItemTest {
             .hasQuality(expectedQuality);
     }
 
+    /**
+     * Returns a stream of tests based on the default ranges specified in the requirements.
+     *
+     * @return a stream of tests
+     * @see #createTestsForLimitedTimeItem(Collection)
+     */
     @TestFactory
     Stream<DynamicTest> defaultModifierTests() {
         return Stream.concat(
@@ -81,5 +87,14 @@ class LimitedTimeItemTest {
         return DynamicTest.dynamicTest(
             String.format("Item with sell in <%d> should have quality updated by <%d>", sellIn, expectedQualityChange),
             () -> updateItemQualityAndCompareWithExpectedQuality(limitedTimeItem, ItemMother.BACKSTAGE_PASS_QUALITY + expectedQualityChange));
+    }
+
+
+    @Test
+    void shouldDecrementSellInDaysWhenUpdating() {
+        var item = new AppreciatingItem(ItemMother.backstagePass());
+        item.decreaseSellIn();
+        assertThat(item)
+            .hasDaysLeftToSell(ItemMother.BACKSTAGE_PASS_SELL_IN_DAYS - 1);
     }
 }
