@@ -17,6 +17,10 @@ public class ItemMother {
     public static final int BACKSTAGE_PASS_SELL_IN_DAYS = 15;
     public static final int BACKSTAGE_PASS_QUALITY = 20;
 
+    public static final String CONJURED_MANA_CAKE_NAME = "Conjured Mana Cake";
+    public static final int CONJURED_MANA_CAKE_SELL_IN_DAYS = 3;
+    public static final int CONJURED_MANA_CAKE_QUALITY = 6;
+
 
     public static Item dexterityVest() {
         return new Item(VEST_NAME, VEST_SELL_IN_DAYS, VEST_QUALITY);
@@ -32,5 +36,9 @@ public class ItemMother {
 
     public static Item backstagePass() {
         return new Item(BACKSTAGE_PASS_NAME, BACKSTAGE_PASS_SELL_IN_DAYS, BACKSTAGE_PASS_QUALITY);
+    }
+
+    public static Item conjuredManaCake() {
+        return new Item(CONJURED_MANA_CAKE_NAME, CONJURED_MANA_CAKE_SELL_IN_DAYS, CONJURED_MANA_CAKE_QUALITY);
     }
 }

@@ -39,6 +39,11 @@ public class ItemConverter {
             return new AppreciatingItem(legacyItem, APPRECIATING_ITEMS.get(name));
         }
 
+        if (name.startsWith(ConjuredItem.NAME_PREFIX)) {
+            log.debug("Item '{}' is a conjured item", name);
+            return new ConjuredItem(legacyItem);
+        }
+
         log.debug("Item '{}' is a normal item", name);
         return new DepreciatingItem(legacyItem);
     }

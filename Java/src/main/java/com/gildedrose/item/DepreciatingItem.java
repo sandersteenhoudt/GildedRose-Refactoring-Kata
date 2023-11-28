@@ -22,11 +22,15 @@ public class DepreciatingItem extends GildedRoseItem {
         this.dailyQualityChange = dailyQualityChange;
     }
 
+    protected int dailyQualityChange() {
+        return dailyQualityChange;
+    }
+
     /**
      * Depreciating items lose quality every day. This drop in quality is {@linkplain #EXPIRATION_QUALITY_DECREMENT_MULTIPLIER multiplied} when the item has {@linkplain #isExpired() expired}.
      */
     public void updateQuality() {
-        var qualityDecrement = isExpired() ? dailyQualityChange * EXPIRATION_QUALITY_DECREMENT_MULTIPLIER : dailyQualityChange;
+        var qualityDecrement = isExpired() ? dailyQualityChange() * EXPIRATION_QUALITY_DECREMENT_MULTIPLIER : dailyQualityChange();
         quality = Integer.max(quality - qualityDecrement, MINIMUM_QUALITY);
     }
 
