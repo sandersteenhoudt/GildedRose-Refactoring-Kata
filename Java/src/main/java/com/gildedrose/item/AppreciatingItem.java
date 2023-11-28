@@ -39,13 +39,4 @@ public class AppreciatingItem extends GildedRoseItem {
         return MAXIMUM_QUALITY;
     }
 
-    @Override
-    public String toString() {
-        return "AppreciatingItem{" +
-            "dailyQualityChange=" + dailyQualityChange +
-            ", name='" + name + '\'' +
-            ", sellIn=" + sellIn +
-            ", quality=" + quality +
-            '}';
-    }
 }

@@ -34,13 +34,4 @@ public class DepreciatingItem extends GildedRoseItem {
         quality = Integer.max(quality - qualityDecrement, MINIMUM_QUALITY);
     }
 
-    @Override
-    public String toString() {
-        return "GildedRoseItem{" +
-            "dailyQualityChange=" + dailyQualityChange +
-            ", name='" + name + '\'' +
-            ", sellIn=" + sellIn +
-            ", quality=" + quality +
-            '}';
-    }
 }

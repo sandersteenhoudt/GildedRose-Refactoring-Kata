@@ -52,16 +52,6 @@ public class LimitedTimeItem extends AppreciatingItem {
         }
     }
 
-    @Override
-    public String toString() {
-        return "LimitedTimeItem{" +
-            "qualityModifiers=" + qualityModifiers +
-            ", name='" + name + '\'' +
-            ", sellIn=" + sellIn +
-            ", quality=" + quality +
-            '}';
-    }
-
     public record TimeBasedQualityModifier(Range<Integer> dayRange, int qualityChange) {
         @Override
         public String toString() {

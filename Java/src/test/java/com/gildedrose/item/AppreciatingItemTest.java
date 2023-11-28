@@ -46,4 +46,5 @@ class AppreciatingItemTest {
         assertThat(item)
             .hasDaysLeftToSell(ItemMother.AGED_BRIE_SELL_IN_DAYS - 1);
     }
+
 }
